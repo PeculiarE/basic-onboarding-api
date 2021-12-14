@@ -1,0 +1,15 @@
+{
+    "development": {
+      "ENV": "POSTGRES_DEV_URL"
+    },
+    "test": {
+      "ENV": "POSTGRES_TEST_URL"
+    },
+    "production": {
+      "ENV": "POSTGRES_PROD_URL"
+    },
+    "defaultEnv": {
+      "ENV": "NODE_ENV"
+    },
+    "sql-file": true
+  }
