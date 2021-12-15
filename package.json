@@ -5,22 +5,40 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon -r esm .",
-    "lint": "eslint --ext .js ./"
+    "lint": "eslint --ext .js ./",
+    "migrate": "db-migrate --migrations-dir ./app/db/migrations",
+    "migrate:up": "npm run migrate up",
+    "migrate:down": "npm run migrate down",
+    "migrate:reset": "npm run migrate reset",
+    "migrate:create": "npm run migrate create",
+    "pretest": "npm run lint && cross-env NODE_ENV=test npm run migrate:reset && cross-env NODE_ENV=test npm run migrate:up",
+    "test": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text --reporter=text-summary mocha -c -r esm test/**/*.test.js --timeout 12000 --exit",
+    "prestart": "cross-env NODE_ENV=production npm run migrate:up",
+    "start": "cross-env NODE_ENV=production node -r esm ."
   },
   "author": "PeculiarE",
   "license": "ISC",
   "dependencies": {
     "app-root-path": "^3.0.0",
+    "bcrypt": "^5.0.1",
     "bluebird": "^3.7.2",
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
     "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
     "db-migrate": "^0.11.13",
     "db-migrate-pg": "^1.2.2",
     "dotenv": "^10.0.0",
     "esm": "^3.2.25",
     "express": "^4.17.1",
     "express-fileupload": "^1.2.1",
+    "faker": "^5.5.3",
     "helmet": "^4.6.0",
+    "joi": "^17.5.0",
+    "js-sha256": "^0.9.0",
+    "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
+    "nanoid": "^3.1.30",
     "pg-monitor": "^1.4.1",
     "pg-promise": "^10.11.1",
     "winston": "^3.3.3"
@@ -29,6 +47,12 @@
     "eslint": "^7.30.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.23.4",
-    "husky": "^7.0.4"
+    "husky": "^4.3.8",
+    "mocha": "^8.4.0",
+    "nyc": "^15.1.0"
+  },
+  "nyc": {
+    "include": "app",
+    "exclude": "app/db" 
   }
 }

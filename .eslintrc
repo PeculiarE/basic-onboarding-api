@@ -12,7 +12,9 @@
         "sourceType": "module"
     },
     "globals": {
-        "logger": "readonly"
+        "logger": "readonly",
+        "describe": "readonly",
+        "it": "readonly"
     },
     "rules": {
         "comma-dangle": 0,

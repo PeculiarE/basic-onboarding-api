@@ -5,7 +5,8 @@ import production from './production';
 
 const {
   PORT,
-  NODE_ENV
+  NODE_ENV,
+  SECRET
 } = process.env;
 
 const currentEnv = {
@@ -19,5 +20,6 @@ export default {
   ...currentEnv,
   rootPath,
   PORT,
-  NODE_ENV
+  NODE_ENV,
+  SECRET
 };

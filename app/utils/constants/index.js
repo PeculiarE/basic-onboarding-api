@@ -1,7 +1,7 @@
 import apiMessage from './api.messages';
-import dbUnique from './unique.constraints';
+import dbConstraints from './db.constraints';
 
 export default {
   ...apiMessage,
-  ...dbUnique
+  ...dbConstraints
 };

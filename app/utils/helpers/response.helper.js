@@ -5,7 +5,7 @@ const { serverError } = genericError;
 const { FAIL, SUCCESS, SUCCESS_RESPONSE } = constants;
 
 /**
- *Contains ResponseHelper methods
+ * Contains ResponseHelper methods
  * @class ResponseHelper
  */
 class ResponseHelper {
@@ -40,7 +40,7 @@ class ResponseHelper {
    * @memberof ResponseHelpers
    * @returns {String} - It returns null.
    */
-  static apiErrLogger(error, req) {
+  static apiErrorLogger(error, req) {
     logger.error(
       `${error.name} - ${error.status} - ${error.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`
     );
@@ -60,12 +60,23 @@ class ResponseHelper {
    */
   static errorResponse(req, res, error) {
     const aggregateError = { ...serverError, ...error };
-    ResponseHelper.apiErrLogger(aggregateError, req);
+    ResponseHelper.apiErrorLogger(aggregateError, req);
     return res.status(aggregateError.status).json({
       status: FAIL,
       message: aggregateError.message,
       errors: aggregateError.errors
     });
+  }
+
+  /**
+   * Generates log for module errors.
+   * @static
+   * @param {object} error - The module error object.
+   * @memberof GenericHelpers
+   * @returns { Null } -  It returns null.
+   */
+  static moduleErrorLogger(error, status) {
+    return logger.error(`${status || error.status} - ${error.name} - ${error.message}`);
   }
 }
 
