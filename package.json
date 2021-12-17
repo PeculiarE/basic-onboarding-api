@@ -20,6 +20,7 @@
   "license": "ISC",
   "dependencies": {
     "app-root-path": "^3.0.0",
+    "aws-sdk": "^2.1046.0",
     "bcrypt": "^5.0.1",
     "bluebird": "^3.7.2",
     "chai": "^4.3.4",
@@ -53,6 +54,6 @@
   },
   "nyc": {
     "include": "app",
-    "exclude": "app/db" 
+    "exclude": "app/db"
   }
 }

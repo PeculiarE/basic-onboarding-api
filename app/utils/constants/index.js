@@ -1,7 +1,9 @@
-import apiMessage from './api.messages';
+import apiMessages from './api.messages';
 import dbConstraints from './db.constraints';
+import fileRequirements from './file.requirements';
 
 export default {
-  ...apiMessage,
-  ...dbConstraints
+  ...apiMessages,
+  ...dbConstraints,
+  ...fileRequirements
 };

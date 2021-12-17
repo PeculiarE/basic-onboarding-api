@@ -32,7 +32,7 @@ class UserModel {
      * with an user object or a DB Error.
      */
   async save() {
-    return db.none(saveUser, this);
+    return db.one(saveUser, this);
   }
 }
 

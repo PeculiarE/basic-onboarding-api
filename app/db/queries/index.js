@@ -1,6 +1,7 @@
-/* eslint-disable import/prefer-default-export */
 import userQueries from './user';
+import onboardingQueries from './onboarding';
 
 export {
-  userQueries
+  userQueries,
+  onboardingQueries
 };

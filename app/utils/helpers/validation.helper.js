@@ -1,4 +1,7 @@
 import Joi from 'joi';
+import constants from '../constants';
+
+const { FILE_EXTENSIONS } = constants;
 
 /**
  * Contains ValidationHelpers methods
@@ -12,7 +15,7 @@ class ValidationHelper {
    * @memberof ValidationHelper
    * @returns {Boolean}
    */
-  static numberCheck(param, min = 1, max = 10000000000) {
+  static numberCheck(param, min = 1, max = 1000000000) {
     return Joi
       .number()
       .required()
@@ -77,6 +80,36 @@ class ValidationHelper {
       'string.email': 'Email is not valid',
       'string.empty': 'Email cannot be an empty field'
     });
+  }
+
+  /**
+   * It checks for valid file extension in url.
+   * @static
+   * @private
+   * @memberof ValidationHelper
+   * @returns {string | error} - Returns the url or an error
+   */
+  static fileExtensionCheck(value, helpers) {
+    const extension = value.split('..')[1];
+    return FILE_EXTENSIONS.includes(extension)
+      ? value
+      : helpers.error('any.invalid');
+  }
+
+  /**
+   * It validates a required file field
+   * @static
+   * @memberof ValidationHelper
+   * @returns {Boolean}
+   */
+  static fileCheck(param) {
+    return Joi.string().required()
+      .custom(ValidationHelper.fileExtensionCheck, 'file url validation')
+      .messages({
+        'any.required': `${param} is a required field`,
+        'string.empty': `${param} cannot be an empty field`,
+        'any.invalid': `${param} must have a valid extension type`
+      });
   }
 }
 export default ValidationHelper;

@@ -22,6 +22,7 @@ class AuthController {
    * @static
    * @param {Request} req - The request from the endpoint.
    * @param {Response} res - The response returned by the method.
+   * @param { Function } next - Calls the next handler.
    * @returns { JSON } A JSON response with a success message or error.
    * @memberof AuthController
    */
@@ -30,10 +31,11 @@ class AuthController {
       const { password } = req.body;
       const { salt, hash } = hashString(password);
       const user = new UserModel({ ...req.body, password: hash, salt });
-      await user.save();
+      const { id, email, onboardingStatus } = await user.save();
       successResponse(res, {
         code: 201,
         message: RESOURCE_CREATE_SUCCESS('User'),
+        data: { id, email, onboardingStatus }
       });
     } catch (e) {
       const error = resolveError(e);
@@ -51,6 +53,7 @@ class AuthController {
    * @static
    * @param {Request} req - The request from the endpoint.
    * @param {Response} res - The response returned by the method.
+   * @param { Function } next - Calls the next handler.
    * @returns { JSON } A JSON response with a success message or error.
    * @memberof AuthController
    */

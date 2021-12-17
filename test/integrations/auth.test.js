@@ -76,6 +76,7 @@ describe('Auth Routes', () => {
       .end((err, res) => {
         expect(res.body.status).to.equal(SUCCESS);
         expect(res.body.message).to.equal(LOGIN_SUCCESS);
+        process.env.ACCESS_TOKEN = `Bearer ${res.body.data.token}`;
         done(err);
       });
   });

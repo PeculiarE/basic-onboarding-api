@@ -1,6 +1,9 @@
-/* eslint-disable import/prefer-default-export */
 import AuthController from './auth';
+import UploadController from './upload';
+import UserController from './user';
 
 export {
-  AuthController
+  AuthController,
+  UploadController,
+  UserController
 };
