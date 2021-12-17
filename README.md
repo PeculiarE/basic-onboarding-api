@@ -23,7 +23,7 @@ Open your terminal and navigate to the folder you want the project to be and ent
 npm ci
 ```
 
-Create a `.env` file and add the environment variables described in the [.env.sample file](https://github.com/Eduskoo/edusko_backend/blob/main/.env.sample).
+Create a `.env` file and add the environment variables described in the [.env.sample file](https://github.com/PeculiarE/basic-onboarding-api/blob/master/.env.sample).
 
 ## Starting the dev server
 
@@ -49,3 +49,9 @@ npm run migrate:down
 - Node JS
 - Express
 - Postgres
+
+## Documentation
+Postman Documentation: https://documenter.getpostman.com/view/14860785/UVRAHRrm
+
+## Hosting Platform
+App Hosted on Heroku: https://onboarding-api.herokuapp.com/api/v1/
