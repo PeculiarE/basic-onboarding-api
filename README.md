@@ -55,3 +55,5 @@ Postman Documentation: https://documenter.getpostman.com/view/14860785/UVRAHRrm
 
 ## Hosting Platform
 App Hosted on Heroku: https://onboarding-api.herokuapp.com/api/v1/
+
+Send me an [email](perhisohwode@gmail.com) if you have any questions :inbox_tray:
